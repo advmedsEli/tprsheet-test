@@ -1,24 +1,16 @@
 # tprsheet
 
-## Project setup
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+<Tprsheet :fields="fields" :items="items" />
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+`items`: array
+必要: date
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+`fields` Object[]
+* `key` String
+* `label` String
+* `single` Boolean
+* `children` String[]
+* `chart` Boolean
+* `key` String

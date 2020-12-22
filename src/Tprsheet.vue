@@ -3,26 +3,34 @@
     <table>
       <tbody>
         <template v-for="field of fields">
-          <template v-if="field.key === 'chart'">
-            <tr :key="`${field.key}-time`">
+          <template v-if="field.chart">
+            <tr v-if="field.time === undefined ? true : field.time" :key="`${field.key}-time`">
               <Th label="時間" />
-              <TdTime v-for="(item, index) of computedItems" :key="index" />
+              <TdTime v-for="(datalist, index) of computedItems" :key="index" />
             </tr>
 
-            <tr :key="`${field.key}-content`">
+            <tr :key="`${field.key}-content`" class="tprsheet-chartwrap">
               <ThChart />
-              <TdChart :colspan="computedItems[0].length" :items="computedItems" :fields="field.fields" />
+              <TdChart
+                v-for="(datalist, index) of computedItems"
+                :key="index"
+                :first-child="index === 0"
+                :items="computedItems"
+                :datalist="datalist"
+                :fields="field.fields"
+                :options="options.chart"
+              />
             </tr>
           </template>
 
           <tr v-else :key="field.key">
-            <Th :label="field.label" :children="field.children ? field.children : []" />
+            <Th :label="field.label" :children="field.children" />
             <Td
-              v-for="(item, index) of computedItems"
+              v-for="(datalist, index) of computedItems"
               :key="index"
-              :single="!!field.single"
-              :item="item"
+              :single="field.single"
               :field-key="field.key"
+              :datalist="datalist"
             />
           </tr>
         </template>
@@ -55,6 +63,10 @@ export default {
     items: {
       type: Array,
       default: () => []
+    },
+    options: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
@@ -69,7 +81,11 @@ export default {
         if (dataObj[dateKey]) dataObj[dateKey].push(item)
         else dataObj[dateKey] = [item]
       })
-      return Object.keys(dataObj).sort().map(key => dataObj[key])
+      return Object.keys(dataObj).sort().map(key => dataObj[key].sort((a, b) => {
+        if (new Date(a.date) > new Date(b.date)) return 1
+        else if (new Date(a.date) < new Date(b.date)) return -1
+        else return 0
+      }))
     }
   }
 }

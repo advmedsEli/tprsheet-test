@@ -1,7 +1,7 @@
 <template>
   <th class="tprsheet-thwrap">
     <div class="tprsheet-th">
-      <div class="tprsheet-th-chartlabel">
+      <div class="tprsheet-th-chartlabel tprsheet-th-chartlabel--breathe">
         <span>呼吸</span>
         <span>80</span>
         <span>70</span>
@@ -12,7 +12,7 @@
         <span>20</span>
         <span>10</span>
       </div>
-      <div class="tprsheet-th-chartlabel">
+      <div class="tprsheet-th-chartlabel tprsheet-th-chartlabel--pulse">
         <span>脈搏</span>
         <span>180</span>
         <span>160</span>
@@ -23,7 +23,7 @@
         <span>60</span>
         <span>40</span>
       </div>
-      <div class="tprsheet-th-chartlabel">
+      <div class="tprsheet-th-chartlabel tprsheet-th-chartlabel--temperature">
         <span>體溫</span>
         <span>42</span>
         <span>41</span>

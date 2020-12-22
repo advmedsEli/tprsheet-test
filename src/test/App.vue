@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Tprsheet :fields="fields" :items="items" />
+    <Tprsheet :fields="fields" :items="items" :options="options" />
   </div>
 </template>
 
@@ -14,6 +14,12 @@ export default {
   },
   data () {
     return {
+      options: {
+        chart: {
+          circleRadius: '5px',
+          lineWidth: '5px'
+        }
+      },
       fields: [
         {
           key: 'date',
@@ -26,33 +32,96 @@ export default {
           single: true
         },
         {
-          key: 'chart',
-          fields: ['breathe', 'pulse', 'temperature']
+          key: 'a',
+          label: '手術產生日期',
+          single: true
         },
         {
-          key: 'painIndex',
-          label: '疼痛指數'
+          key: 'b',
+          label: '重要藥物及檢查',
+          single: true
+        },
+        {
+          key: 'chart',
+          chart: true,
+          time: true,
+          fields: [
+            {
+              key: 'breathe',
+              alias: 'breathe',
+              color: '#6fc0d3',
+              circleR: '3px',
+              lineWidth: '3px'
+            },
+            {
+              key: 'pulse',
+              alias: 'pulse',
+              color: '#1a6f8f'
+            },
+            {
+              key: 'temperature',
+              alias: 'temperature',
+              color: '#ef7610'
+            }
+          ]
         },
         {
           key: 'bloodPressure',
           label: '血壓'
         },
         {
+          key: 'painIndex',
+          label: '疼痛指數'
+        },
+        {
           key: 'comaScale',
           label: '昏迷指數',
           children: ['E', 'V', 'M']
+        },
+        {
+          key: 'pr',
+          label: 'Pupils Reaction',
+          children: ['R', 'L']
+        },
+        {
+          key: 'oxygen',
+          label: '血氧濃度'
+        },
+        {
+          key: 'io',
+          label: 'I/O 差異量'
+        },
+        {
+          key: 'sdds',
+          label: '重要異常報告'
         }
       ],
       items: [
+        {
+          date: '2020/11/13 18:00',
+          day: '第一天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 97,
+          io: -1530
+        },
         {
           date: '2020/11/13 06:00',
           day: '第一天',
           painIndex: 0,
           bloodPressure: [125, 80],
           comaScale: [4, 4, 6],
-          breathe: 30,
+          breathe: 10,
           pulse: 80,
-          temperature: 36
+          temperature: 35.8,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
         },
         {
           date: '2020/11/13 12:00',
@@ -60,29 +129,246 @@ export default {
           painIndex: 1,
           bloodPressure: [130, 85],
           comaScale: [5, 5, 5],
-          breathe: 83,
-          pulse: 90,
-          temperature: 36.2
+          breathe: 15,
+          pulse: 95,
+          temperature: 36.2,
+          pr: ['4T', '4T'],
+          oxygen: 96,
+          io: -1530
+        },
+        {
+          date: '2020/11/13 14:00',
+          day: '第一天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 21,
+          pulse: 79,
+          temperature: 35.5,
+          pr: ['4T', '4T'],
+          oxygen: 98,
+          io: -1530
+        },
+        // {
+        //   date: '2020/11/13 18:00',
+        //   day: '第一天',
+        //   painIndex: 1,
+        //   bloodPressure: [130, 85],
+        //   comaScale: [5, 5, 5],
+        //   breathe: 21,
+        //   pulse: 91,
+        //   temperature: 36.6,
+        //   pr: ['4T', '4T'],
+        //   oxygen: 97,
+        //   io: -1530
+        // },
+        {
+          date: '2020/11/13 19:00',
+          day: '第一天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 97,
+          io: -1530
         },
         {
           date: '2020/11/14 06:00',
           day: '第二天',
-          painIndex: 2,
-          bloodPressure: [127, 82],
-          comaScale: [3, 2, 1],
-          breathe: 45,
-          pulse: 82,
-          temperature: 36.5
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 10,
+          pulse: 80,
+          temperature: 35.8,
+          pr: ['4T', '4T'],
+          oxygen: 100,
+          io: -1530
         },
         {
-          date: '2020/11/14 11:00',
+          date: '2020/11/14 12:00',
           day: '第二天',
-          painIndex: 3,
-          bloodPressure: [129, 81],
-          comaScale: [2, 2, 2],
-          breathe: 40,
-          pulse: 85,
-          temperature: 35
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 15,
+          pulse: 95,
+          temperature: 36.2,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
+        },
+        {
+          date: '2020/11/14 14:00',
+          day: '第二天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 21,
+          pulse: 79,
+          temperature: 35.5,
+          pr: ['4T', '4T'],
+          oxygen: 97,
+          io: -1530
+        },
+        {
+          date: '2020/11/14 18:00',
+          day: '第二天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
+        },
+        {
+          date: '2020/11/14 19:00',
+          day: '第二天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
+        },
+        {
+          date: '2020/11/15 06:00',
+          day: '第三天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 10,
+          pulse: 80,
+          temperature: 35.8,
+          pr: ['4T', '4T'],
+          oxygen: 98,
+          io: -1530
+        },
+        {
+          date: '2020/11/15 12:00',
+          day: '第三天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 15,
+          pulse: 95,
+          temperature: 36.2,
+          pr: ['4T', '4T'],
+          oxygen: 96,
+          io: -1530
+        },
+        {
+          date: '2020/11/15 14:00',
+          day: '第三天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 21,
+          pulse: 79,
+          temperature: 35.5,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
+        },
+        {
+          date: '2020/11/15 18:00',
+          day: '第三天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 91,
+          io: -1530
+        },
+        {
+          date: '2020/11/15 19:00',
+          day: '第三天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 91,
+          io: -1530
+        },
+        {
+          date: '2020/11/16 06:00',
+          day: '第四天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 10,
+          pulse: 80,
+          temperature: 35.8,
+          pr: ['4T', '4T'],
+          oxygen: 99,
+          io: -1530
+        },
+        {
+          date: '2020/11/16 12:00',
+          day: '第四天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 15,
+          pulse: 95,
+          temperature: 36.2,
+          pr: ['4T', '4T'],
+          oxygen: 98,
+          io: -1530
+        },
+        {
+          date: '2020/11/16 14:00',
+          day: '第四天',
+          painIndex: 0,
+          bloodPressure: [125, 80],
+          comaScale: [4, 4, 6],
+          breathe: 21,
+          pulse: 79,
+          temperature: 35.5,
+          pr: ['4T', '4T'],
+          oxygen: 95,
+          io: -1530
+        },
+        {
+          date: '2020/11/16 18:00',
+          day: '第四天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 96,
+          io: -1530
+        },
+        {
+          date: '2020/11/16 19:00',
+          day: '第四天',
+          painIndex: 1,
+          bloodPressure: [130, 85],
+          comaScale: [5, 5, 5],
+          breathe: 21,
+          pulse: 91,
+          temperature: 36.6,
+          pr: ['4T', '4T'],
+          oxygen: 96,
+          io: -1530
         }
       ]
     }
@@ -91,6 +377,18 @@ export default {
 </script>
 <style>
   html {
-    background-color: #ccc;
+    background-color: #daf1da;
+  }
+
+  .tprsheet-th-chartlabel--breathe {
+    color: #6fc0d3;
+  }
+
+  .tprsheet-th-chartlabel--pulse {
+    color: #1a6f8f;
+  }
+
+  .tprsheet-th-chartlabel--temperature {
+    color: #ef7610;
   }
 </style>
