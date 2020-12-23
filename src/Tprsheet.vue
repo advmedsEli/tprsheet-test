@@ -10,7 +10,7 @@
             </tr>
 
             <tr :key="`${field.key}-content`" class="tprsheet-chartwrap">
-              <ThChart />
+              <ThChart :fields="field.fields" />
               <TdChart
                 v-for="(datalist, index) of computedItems"
                 :key="index"
@@ -87,6 +87,10 @@ export default {
         else return 0
       }))
     }
+  },
+  mounted () {
+    if (this.options.backgroundColor) document.documentElement.style.setProperty('--tpr-bg-color', this.options.backgroundColor)
+    if (this.options.borderColor) document.documentElement.style.setProperty('--tpr-border-color', this.options.borderColor)
   }
 }
 </script>

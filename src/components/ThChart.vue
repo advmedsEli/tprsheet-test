@@ -40,6 +40,17 @@
 
 <script>
 export default {
-  name: 'ThChart'
+  name: 'ThChart',
+  props: {
+    fields: {
+      type: Array,
+      default: () => []
+    }
+  },
+  mounted () {
+    this.fields.forEach(field => {
+      if (field.color) document.documentElement.style.setProperty(`--tpr-${field.key}-color`, field.color)
+    })
+  }
 }
 </script>

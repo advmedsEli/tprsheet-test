@@ -1,8 +1,15 @@
-$border-color: #bcb7b7;
+
+:root {
+  --tpr-bg-color: #fff;
+  --tpr-border-color: #bcb7b7;
+  --tpr-breathe-color: #000;
+  --tpr-pulse-color: #000;
+  --tpr-temperature-color: #000;
+}
 
 .tprsheet {
   padding: 1rem;
-  background-color: #fff;
+  background-color: var(--tpr-bg-color);
   border-radius: 1.25rem;
 
   table {
@@ -15,7 +22,7 @@ $border-color: #bcb7b7;
   td {
     padding: 0;
     height: 50px;
-    border-right: 3px solid $border-color;
+    border-right: 3px solid var(--tpr-border-color);
   }
 
   th {
@@ -29,7 +36,7 @@ $border-color: #bcb7b7;
   tr:not(:last-child) {
     th,
     td {
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid var(--tpr-border-color);
     }
   }
 
@@ -82,6 +89,18 @@ $border-color: #bcb7b7;
           margin-bottom: 2rem;
         }
       }
+
+      &--breathe {
+        color: var(--tpr-breathe-color);
+      }
+
+      &--pulse {
+        color: var(--tpr-pulse-color);
+      }
+
+      &--temperature {
+        color: var(--tpr-temperature-color);
+      }
     }
   }
 
@@ -97,7 +116,7 @@ $border-color: #bcb7b7;
       flex-direction: column;
 
       &:not(:first-child) {
-        border-left: 1px solid $border-color;
+        border-left: 1px solid var(--tpr-border-color);
       }
     }
 
@@ -108,7 +127,7 @@ $border-color: #bcb7b7;
       flex-grow: 1;
 
       &:not(:last-child) {
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid var(--tpr-border-color);
       }
     }
 
@@ -119,7 +138,7 @@ $border-color: #bcb7b7;
 
       &:first-child {
         margin: 0.5rem 0 0.5rem calc(12.5% - 1rem);
-        border-right: 1px solid $border-color;
+        border-right: 1px solid var(--tpr-border-color);
       }
 
       &-label {
@@ -147,7 +166,7 @@ $border-color: #bcb7b7;
       min-width: 60px;
       text-align: left;
       background-color: #fff;
-      border: 2px solid #c0c0c0;
+      border: 2px solid var(--tpr-border-color);
       border-radius: 10px;
 
       &::before {
@@ -156,7 +175,7 @@ $border-color: #bcb7b7;
         left: calc(50% - 5px);
         border: 5px solid transparent;
         content: '';
-        border-top: 10px solid #c0c0c0;
+        border-top: 10px solid var(--tpr-border-color);
       }
 
       &::after {

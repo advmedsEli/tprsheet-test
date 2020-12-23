@@ -15,6 +15,8 @@ export default {
   data () {
     return {
       options: {
+        backgroundColor: '#fff',
+        borderColor: ' #bcb7b7',
         chart: {
           circleRadius: '5px',
           lineWidth: '5px'
@@ -49,9 +51,7 @@ export default {
             {
               key: 'breathe',
               alias: 'breathe',
-              color: '#6fc0d3',
-              circleR: '3px',
-              lineWidth: '3px'
+              color: '#6fc0d3'
             },
             {
               key: 'pulse',
@@ -149,19 +149,6 @@ export default {
           oxygen: 98,
           io: -1530
         },
-        // {
-        //   date: '2020/11/13 18:00',
-        //   day: '第一天',
-        //   painIndex: 1,
-        //   bloodPressure: [130, 85],
-        //   comaScale: [5, 5, 5],
-        //   breathe: 21,
-        //   pulse: 91,
-        //   temperature: 36.6,
-        //   pr: ['4T', '4T'],
-        //   oxygen: 97,
-        //   io: -1530
-        // },
         {
           date: '2020/11/13 19:00',
           day: '第一天',
@@ -375,20 +362,9 @@ export default {
   }
 }
 </script>
+
 <style>
   html {
-    background-color: #daf1da;
-  }
-
-  .tprsheet-th-chartlabel--breathe {
-    color: #6fc0d3;
-  }
-
-  .tprsheet-th-chartlabel--pulse {
-    color: #1a6f8f;
-  }
-
-  .tprsheet-th-chartlabel--temperature {
-    color: #ef7610;
+    background-color: #afd7e0;
   }
 </style>
