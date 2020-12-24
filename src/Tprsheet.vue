@@ -18,7 +18,7 @@
                 :items="computedItems"
                 :datalist="datalist"
                 :fields="field.fields"
-                :options="options.chart"
+                :options="computedOptions"
               />
             </tr>
           </template>
@@ -70,6 +70,21 @@ export default {
     }
   },
   computed: {
+    computedOptions () {
+      const options = {
+        backgroundColor: '#fff',
+        borderColor: '#bcb7b7',
+        chart: {
+          circleRadius: '5px',
+          lineWidth: '2px'
+        }
+      }
+      Object.keys(this.options).forEach(key => {
+        if (typeof (options[key]) === 'object') options[key] = Object.assign(options[key], this.options[key])
+        else options[key] = this.options[key]
+      })
+      return options
+    },
     computedItems () {
       const dataObj = {}
       this.items.forEach(item => {
@@ -89,8 +104,8 @@ export default {
     }
   },
   mounted () {
-    if (this.options.backgroundColor) document.documentElement.style.setProperty('--tpr-bg-color', this.options.backgroundColor)
-    if (this.options.borderColor) document.documentElement.style.setProperty('--tpr-border-color', this.options.borderColor)
+    if (this.computedOptions.backgroundColor) document.documentElement.style.setProperty('--tpr-bg-color', this.computedOptions.backgroundColor)
+    if (this.computedOptions.borderColor) document.documentElement.style.setProperty('--tpr-border-color', this.computedOptions.borderColor)
   }
 }
 </script>

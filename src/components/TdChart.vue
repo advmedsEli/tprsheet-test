@@ -43,7 +43,7 @@ export default {
     },
     options: {
       type: Object,
-      default: () => {}
+      required: true
     }
   },
   data () {
@@ -54,16 +54,6 @@ export default {
     }
   },
   computed: {
-    computedOptions () {
-      const options = {
-        circleRadius: '5px',
-        lineWidth: '2px'
-      }
-      Object.keys(this.options).forEach(key => {
-        options[key] = this.options[key]
-      })
-      return options
-    },
     popoverDate () {
       if (this.popoverData === null) return ''
       else {
@@ -105,7 +95,7 @@ export default {
           .attr('y1', yEqual * (labelHeight + index + 1))
           .attr('x2', this.w)
           .attr('y2', yEqual * (labelHeight + index + 1))
-          .attr('stroke', '#bcb7b7')
+          .attr('stroke', this.options.borderColor)
           .attr('stroke-width', '1px')
       }
     },
@@ -159,14 +149,14 @@ export default {
               else return temperatureScaleY(item.temperature)
             }
           })
-          .attr('r', this.computedOptions.circleRadius)
+          .attr('r', this.options.chart.circleRadius)
           .attr('fill', color)
 
         group
           .append('path')
           .attr('d', linePath(datalist))
           .attr('stroke', color)
-          .attr('stroke-width', this.computedOptions.lineWidth)
+          .attr('stroke-width', this.options.chart.lineWidth)
           .attr('fill', 'none')
 
         circle.on('mouseover', (event, item) => {
@@ -186,7 +176,7 @@ export default {
               if (field.alias) top = temperatureScaleY(item[field.alias])
               else top = temperatureScaleY(item.temperature)
             }
-            this.$refs.popoverData.style.top = `calc(${top - this.$refs.popoverData.offsetHeight - 15 + 'px'} - ${this.computedOptions.circleRadius})`
+            this.$refs.popoverData.style.top = `calc(${top - this.$refs.popoverData.offsetHeight - 15 + 'px'} - ${this.options.chart.circleRadius})`
             this.$refs.popoverData.style.left = left - (this.$refs.popoverData.offsetWidth / 2) + 'px'
           })
         }).on('mouseout', () => {

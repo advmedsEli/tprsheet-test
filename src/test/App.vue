@@ -15,12 +15,11 @@ export default {
   data () {
     return {
       options: {
-        backgroundColor: '#fff',
-        borderColor: ' #bcb7b7',
-        chart: {
-          circleRadius: '5px',
-          lineWidth: '5px'
-        }
+        // backgroundColor: '#fff',
+        // borderColor: 'red',
+        // chart: {
+        //   circleRadius: '5px'
+        // }
       },
       fields: [
         {
