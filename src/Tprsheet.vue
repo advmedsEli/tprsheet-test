@@ -9,7 +9,7 @@
               <TdTime v-for="(datalist, index) of computedItems" :key="index" />
             </tr>
 
-            <tr :key="`${field.key}-content`" class="tprsheet-chartwrap">
+            <tr :key="`${field.key}-contednt`" class="tprsheet-chartwrap">
               <ThChart :fields="field.fields" />
               <TdChart
                 v-for="(datalist, index) of computedItems"
